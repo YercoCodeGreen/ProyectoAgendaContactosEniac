@@ -1,5 +1,6 @@
 package com.example.proyectoagendacontactoseniac;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -50,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 // Usar la clase Administrador para validar las credenciales
                 if (admin.validarCredenciales(username, password)) {
                     Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                    // Aquí puedes redirigir a otra actividad
+
+                    Intent intent = new Intent(MainActivity.this, MenuAct.class);
+                    startActivity(intent);
+
                 } else {
                     Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                 }
