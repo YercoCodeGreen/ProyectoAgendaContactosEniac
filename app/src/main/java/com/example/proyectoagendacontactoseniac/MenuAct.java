@@ -34,7 +34,5 @@ public class MenuAct extends AppCompatActivity {
             flip_image(image[i]);
         }
 
-
-
     }
 }

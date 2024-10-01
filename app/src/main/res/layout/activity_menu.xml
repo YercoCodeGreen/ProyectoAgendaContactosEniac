@@ -33,55 +33,52 @@
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
                 android:backgroundTint="#13444D"
                 android:text="Eliminar contactos"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.925"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.857" />
+                app:layout_constraintVertical_bias="0.956" />
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="157dp"
-                android:layout_height="50dp"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
                 android:backgroundTint="#13444D"
                 android:text="Ver contactos"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.103"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.857" />
+                app:layout_constraintVertical_bias="0.77" />
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="161dp"
-                android:layout_height="48dp"
+
+                android:layout_width="250dp"
+                android:layout_height="55dp"
                 android:backgroundTint="#13444D"
                 android:text="Editar contacto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.717" />
+                app:layout_constraintVertical_bias="0.863" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
                 android:backgroundTint="#13444D"
                 android:text="Ingresar contacto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.103"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.717" />
+                app:layout_constraintVertical_bias="0.677" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -105,6 +102,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
         android:text="Agenda ENIAC"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
