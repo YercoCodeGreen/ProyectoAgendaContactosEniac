@@ -75,14 +75,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="263dp"
-        android:layout_height="66dp"
+        android:layout_width="330dp"
+        android:layout_height="107dp"
         android:text="!Bienvenido a tu aplicacion de contactos favorita¡ acá podrás guardar tus contactos y visualizarlos cuando quieras."
         android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintVertical_bias="0.285" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
