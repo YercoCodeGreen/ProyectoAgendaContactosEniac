@@ -32,7 +32,7 @@
             android:layout_height="648dp">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btn_agregar"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:backgroundTint="#13444D"
@@ -73,7 +73,7 @@
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:backgroundTint="#13444D"
-                android:text="Ingresar contacto"
+                android:text="Agregar contacto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,10 +81,10 @@
                 app:layout_constraintVertical_bias="0.677" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/nombretxt"
                 android:layout_width="267dp"
                 android:layout_height="55dp"
-                android:text="Selecciona la opción que necesites"
+                android:text="Seleccione una opción: "
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

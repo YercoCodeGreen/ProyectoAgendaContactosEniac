@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProyectoAgendaContactosEniac"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarAct"
+            android:exported="false" />
+        <activity
             android:name=".MenuAct"
             android:exported="false" />
         <activity
