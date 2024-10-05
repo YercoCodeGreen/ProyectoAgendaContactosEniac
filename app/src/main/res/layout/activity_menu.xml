@@ -53,7 +53,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.831" />
+                app:layout_constraintVertical_bias="0.77" />
+
+            <Button
+                android:id="@+id/button3"
+
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:backgroundTint="#13444D"
+                android:text="Editar contacto"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.863" />
 
             <Button
                 android:id="@+id/button2"
@@ -65,7 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.713" />
+                app:layout_constraintVertical_bias="0.677" />
 
             <TextView
                 android:id="@+id/nombretxt"
