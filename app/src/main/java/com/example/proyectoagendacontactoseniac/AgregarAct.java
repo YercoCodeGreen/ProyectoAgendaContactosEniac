@@ -37,7 +37,7 @@ public class AgregarAct extends AppCompatActivity {
                 String telefono = txtTelefono.getText().toString();
                 String correo = txtCorreo.getText().toString();
 
-                if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+                if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty()) {
                     Toast.makeText(AgregarAct.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
                 } else {
                     // Aquí puedes guardar los datos, por ejemplo en una base de datos o pasarlos a la actividad principal
