@@ -63,7 +63,7 @@ public class AgregarAct extends AppCompatActivity {
                     jsonData.put("correo", correo);
 
                     // Definir la URL de tu servidor
-                    URL url = new URL("http://10.30.64.149:3000/contacto");  // Si usas el emulador de Android
+                    URL url = new URL("http://10.110.47.20:3000/contacto");  // Si usas el emulador de Android
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
