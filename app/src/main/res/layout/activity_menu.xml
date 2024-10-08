@@ -32,7 +32,7 @@
             android:layout_height="648dp">
 
             <Button
-                android:id="@+id/btn_agregar"
+                android:id="@+id/btn_eliminarcontacto"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:backgroundTint="#13444D"
@@ -44,7 +44,7 @@
                 app:layout_constraintVertical_bias="0.956" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btn_vercontactos"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:backgroundTint="#13444D"
@@ -56,7 +56,7 @@
                 app:layout_constraintVertical_bias="0.77" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn_editarcontacto"
 
                 android:layout_width="250dp"
                 android:layout_height="55dp"
@@ -69,7 +69,7 @@
                 app:layout_constraintVertical_bias="0.863" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn_agregarcontacto"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:backgroundTint="#13444D"
