@@ -1,20 +1,25 @@
 package com.example.proyectoagendacontactoseniac;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class AgregarAct extends AppCompatActivity {
+
     private EditText txtNombre, txtApellidos, txtTelefono, txtCorreo;
     private Button btnAgregar, btnCancelar;
 
@@ -22,6 +27,10 @@ public class AgregarAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar);
+
+        // Permitir operaciones de red en el hilo principal (esto es solo para pruebas, evita hacer esto en producción)
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         // Vincular los elementos de la interfaz con el código
         txtNombre = findViewById(R.id.txtNombre);
@@ -35,19 +44,58 @@ public class AgregarAct extends AppCompatActivity {
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre = txtNombre.getText().toString().trim();
-                String apellidos = txtApellidos.getText().toString().trim();
-                String telefono = txtTelefono.getText().toString().trim();
-                String correo = txtCorreo.getText().toString().trim();
+                String nombre = txtNombre.getText().toString();
+                String apellidos = txtApellidos.getText().toString();
+                String telefono = txtTelefono.getText().toString();
+                String correo = txtCorreo.getText().toString();
 
-                if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty()) {
-                    Toast.makeText(AgregarAct.this, "Por favor, completa todos los campos obligatorios", Toast.LENGTH_SHORT).show();
-                } else if (!Patterns.PHONE.matcher(telefono).matches()) {
-                    Toast.makeText(AgregarAct.this, "Número de teléfono no válido", Toast.LENGTH_SHORT).show();
-                } else if (!correo.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                    Toast.makeText(AgregarAct.this, "Correo electrónico no válido", Toast.LENGTH_SHORT).show();
-                } else {
-                    new AgregarContactoTask().execute(nombre, apellidos, telefono, correo);
+                if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+                    Toast.makeText(AgregarAct.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Crear el objeto JSON para enviar
+                JSONObject jsonData = new JSONObject();
+                try {
+                    jsonData.put("nombre", nombre);
+                    jsonData.put("apellidos", apellidos);
+                    jsonData.put("telefono", telefono);
+                    jsonData.put("correo", correo);
+
+                    // Definir la URL de tu servidor
+                    URL url = new URL("http://192.168.56.1:3000/contacto");  // Si usas el emulador de Android
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    urlConnection.setDoOutput(true);
+
+                    // Enviar los datos
+                    OutputStream os = new BufferedOutputStream(urlConnection.getOutputStream());
+                    os.write(jsonData.toString().getBytes("UTF-8"));
+                    os.flush();
+                    os.close();
+
+                    // Leer la respuesta del servidor
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    String line;
+                    StringBuilder response = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+
+                    // Manejar la respuesta
+                    String result = response.toString();
+                    Toast.makeText(AgregarAct.this, result, Toast.LENGTH_SHORT).show();
+
+                    // Cerrar conexión
+                    reader.close();
+                    in.close();
+                    urlConnection.disconnect();
+
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -56,51 +104,9 @@ public class AgregarAct extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Regresar a la actividad anterior
                 finish();
             }
         });
-    }
-
-    private class AgregarContactoTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            String nombre = params[0];
-            String apellidos = params[1];
-            String telefono = params[2];
-            String correo = params[3];
-            String response = "";
-
-            try {
-                String urlString = "http://127.0.0.1/AgendaContactos/Registrar.php"; // Cambia localhost por tu dirección IP
-                URL url = new URL(urlString);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setDoOutput(true);
-
-                String postData = "nombre=" + URLEncoder.encode(nombre, "UTF-8") +
-                        "&apellidos=" + URLEncoder.encode(apellidos, "UTF-8") +
-                        "&telefono=" + URLEncoder.encode(telefono, "UTF-8") +
-                        "&correo=" + URLEncoder.encode(correo, "UTF-8");
-
-                OutputStream os = conn.getOutputStream();
-                os.write(postData.getBytes());
-                os.flush();
-                os.close();
-
-                response = conn.getResponseMessage(); // Obtener la respuesta del servidor
-                conn.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            Toast.makeText(AgregarAct.this, "Contacto agregado: " + result, Toast.LENGTH_SHORT).show();
-            finish();
-        }
     }
 }

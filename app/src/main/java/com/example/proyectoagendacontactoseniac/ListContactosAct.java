@@ -43,7 +43,7 @@ public class ListContactosAct extends AppCompatActivity {
         new Thread(() -> {
             try {
                 // URL de tu servidor
-                URL url = new URL("http://10.110.47.20:3000/api/contactos");
+                URL url = new URL("http://192.168.56.1:3000/api/contactos");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
