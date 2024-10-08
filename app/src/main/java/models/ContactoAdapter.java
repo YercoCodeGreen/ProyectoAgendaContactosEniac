@@ -35,6 +35,8 @@ public class ContactoAdapter extends ArrayAdapter<Contacto> {
         TextView contactTelefono = convertView.findViewById(R.id.contactTelefono);
         TextView contactCorreo = convertView.findViewById(R.id.contactCorreo);
 
+        //
+
         // Obtener el contacto actual
         Contacto contacto = contactos.get(position);
 
