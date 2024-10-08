@@ -52,5 +52,15 @@ public class MenuAct extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnVerContactos = findViewById(R.id.btn_vercontactos);
+        btnVerContactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crear un Intent para ir a ListContactosAct
+                Intent intent = new Intent(MenuAct.this, ListContactosAct.class);
+                startActivity(intent);
+            }
+        });
     }
 }
