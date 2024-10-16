@@ -80,7 +80,7 @@
                 android:id="@+id/nombretxt5"
                 android:layout_width="238dp"
                 android:layout_height="47dp"
-                android:text="Correo (opcional):"
+                android:text="Correo:"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

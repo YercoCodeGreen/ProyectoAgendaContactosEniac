@@ -21,8 +21,8 @@ public class EditContactoAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_contacto);
 
-        // Obtener los extras del Intent
-        contactoId = getIntent().getIntExtra("id", 2);
+
+        contactoId = getIntent().getIntExtra("id", 4);
 
 
 
