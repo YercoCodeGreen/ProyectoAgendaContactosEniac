@@ -1,52 +1,70 @@
 package models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.proyectoagendacontactoseniac.EditContactoAct;
 import com.example.proyectoagendacontactoseniac.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ContactoAdapter extends ArrayAdapter<Contacto> {
+public class ContactoAdapter extends BaseAdapter {
+
     private Context context;
-    private List<Contacto> contactos;
+    private ArrayList<Contacto> listaContactos;
 
-    public ContactoAdapter(Context context, List<Contacto> contactos) {
-        super(context, R.layout.item_contacto, contactos);
+    public ContactoAdapter(Context context, ArrayList<Contacto> listaContactos) {
         this.context = context;
-        this.contactos = contactos;
+        this.listaContactos = listaContactos;
+    }
+
+    @Override
+    public int getCount() {
+        return listaContactos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listaContactos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Inflar el layout del item si es nulo
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_contacto, parent, false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.item_contacto, parent, false);
         }
 
-        // Obtener los elementos de la vista
-        ImageView contactImage = convertView.findViewById(R.id.contactImage);
-        TextView contactNombre = convertView.findViewById(R.id.contactNombre);
-        TextView contactTelefono = convertView.findViewById(R.id.contactTelefono);
-        TextView contactCorreo = convertView.findViewById(R.id.contactCorreo);
-
-        //
+        TextView nombreContacto = convertView.findViewById(R.id.nombreContacto);
+        Button btnEditar = convertView.findViewById(R.id.btnEditar);
 
         // Obtener el contacto actual
-        Contacto contacto = contactos.get(position);
+        Contacto contacto = listaContactos.get(position);
 
-        // Configurar los valores del contacto
-        contactNombre.setText(contacto.getNombre() + " " + contacto.getApellidos());
-        contactTelefono.setText(contacto.getTelefono());
-        contactCorreo.setText(contacto.getCorreo());
+        // Establecer el nombre del contacto en el TextView
+        nombreContacto.setText(contacto.getNombre());
 
-        // Si tienes imágenes personalizadas, configúralas aquí
-        contactImage.setImageResource(R.drawable.ic_contact_image); // Ejemplo de imagen predeterminada
+        // Configurar el botón "Editar"
+        btnEditar.setOnClickListener(v -> {
+            // Iniciar la actividad de edición, pasando los datos del contacto
+            Intent intent = new Intent(context, EditContactoAct.class);
+            intent.putExtra("nombre", contacto.getNombre());
+            intent.putExtra("apellidos", contacto.getApellidos());
+            intent.putExtra("telefono", contacto.getTelefono());
+            intent.putExtra("correo", contacto.getCorreo());
+            context.startActivity(intent);
+        });
 
         return convertView;
     }
